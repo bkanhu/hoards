@@ -10,7 +10,7 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const { authUser, isLoading } = useAuth();
+  const { authUser, isLoading, setAuthUser } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -24,6 +24,11 @@ export default function SignupPage() {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: fullName });
+      setAuthUser({
+        uid: user.uid,
+        email: user.email,
+        fullName: user.displayName,
+      });
       console.log(user);
     } catch (err) {
       console.log(err);
