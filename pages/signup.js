@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { auth } from '../config/firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-
+import { useAuth } from '@/context/AuthContext';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,7 +10,14 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const { authUser, isLoading } = useAuth();
+  const router = useRouter();
 
+  useEffect(() => {
+    if (!isLoading && authUser) {
+      router.push('/dashboard');
+    }
+  }, [authUser, isLoading]);
   const singupHandler = async () => {
     if (!fullName || !email || !password) return;
 

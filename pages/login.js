@@ -2,12 +2,20 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { auth } from '../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { useRouter } from 'next/router';
 import Link from 'next/link';
-
+import { useAuth } from '@/context/AuthContext';
 export default function LoginPage() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const { authUser, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && authUser) {
+      router.push('/dashboard');
+    }
+  }, [authUser, isLoading]);
 
   const loginHandler = async () => {
     if (!email || !password) return;
