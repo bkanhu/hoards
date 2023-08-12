@@ -8,7 +8,7 @@ import { useAuth } from '@/context/AuthContext';
 export default function LoginPage() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  const { authUser, isLoading } = useAuth();
+  const { authUser, isLoading, setIsLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -18,6 +18,7 @@ export default function LoginPage() {
   }, [authUser, isLoading, router]);
 
   const loginHandler = async () => {
+    setIsLoading(true);
     if (!email || !password) return;
 
     try {
@@ -25,8 +26,10 @@ export default function LoginPage() {
 
       console.log(user);
     } catch (err) {
+      alert(err.message);
       console.log(err);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -97,7 +100,7 @@ export default function LoginPage() {
             className="block w-full px-4 py-2 text-sm font-medium text-white transition-colors duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md btn btn-primary hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onClick={loginHandler}
           >
-            Log in
+            {isLoading ? 'Loading...' : 'Log in'}
           </button>
           <p className="mt-3 text-center">
             Dont have an account?

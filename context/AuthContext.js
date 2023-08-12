@@ -42,6 +42,7 @@ export default function useFirebaseAuth() {
     authUser,
     isLoading,
     setAuthUser,
+    setIsLoading,
     logOut,
   };
 }
