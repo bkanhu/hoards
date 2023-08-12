@@ -9,8 +9,8 @@ const AuthUserContext = createContext({
 });
 
 export default function useFirebaseAuth() {
-  const [authUser, setAuthUser] = useState();
-  const [isLoading, setIsLoading] = useState();
+  const [authUser, setAuthUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const authStateChange = async (user) => {
     setIsLoading(true);

@@ -17,7 +17,7 @@ export default function SignupPage() {
     if (!isLoading && authUser) {
       router.push('/dashboard');
     }
-  }, [authUser, isLoading]);
+  }, [authUser, isLoading, router]);
   const singupHandler = async () => {
     if (!fullName || !email || !password) return;
 

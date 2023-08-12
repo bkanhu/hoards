@@ -1,12 +1,11 @@
-import React from 'react';
+// import React from 'react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { auth } from '../config/firebase';
 import { useAuth } from '@/context/AuthContext';
 
 import { LogOut } from 'lucide-react';
 
-const dashboard = () => {
+const Dashboard = () => {
   const { authUser, isLoading, logOut } = useAuth();
   const router = useRouter();
 
@@ -14,7 +13,7 @@ const dashboard = () => {
     if (!isLoading && !authUser) {
       router.push('/login');
     }
-  }, [authUser, isLoading]);
+  }, [authUser, isLoading, router]);
   return (
     <div>
       Dashboard
@@ -29,4 +28,4 @@ const dashboard = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;

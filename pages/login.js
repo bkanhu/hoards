@@ -15,7 +15,7 @@ export default function LoginPage() {
     if (!isLoading && authUser) {
       router.push('/dashboard');
     }
-  }, [authUser, isLoading]);
+  }, [authUser, isLoading, router]);
 
   const loginHandler = async () => {
     if (!email || !password) return;
