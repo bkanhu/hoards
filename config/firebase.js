@@ -4,13 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBTkRRH3yy8EWQx3YNXY_n3TQkq6vndkIg',
-  authDomain: 'hui-link.firebaseapp.com',
-  projectId: 'hui-link',
-  storageBucket: 'hui-link.appspot.com',
-  messagingSenderId: '658325534338',
-  appId: '1:658325534338:web:cbb2998fff1642bdaca69b',
-  measurementId: 'G-WMR0GFWSW6',
+  apiKey: process.env.NEXT_PUBLIC_APIKEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECTID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
+  appId: process.env.NEXT_PUBLIC_APPID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENTID,
 };
 
 const app = initializeApp(firebaseConfig);
