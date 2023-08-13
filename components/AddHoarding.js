@@ -260,8 +260,8 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/config/firebase';
 
-const AddHoarding = () => {
-  const { authUser, isLoading, logOut } = useAuth();
+const AddHoarding = ({ closeModal, updateUserData }) => {
+  const { authUser } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [urlOrLink, setUrlOrLink] = useState('');
@@ -269,11 +269,7 @@ const AddHoarding = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(selectedCategory, selectedSubcategory, urlOrLink, note);
-    console.log('Form submitted');
-
     try {
-      console.log(authUser.uid);
       const docRef = await addDoc(collection(db, 'hoards'), {
         owner: authUser.uid,
         category: selectedCategory,
@@ -281,24 +277,34 @@ const AddHoarding = () => {
         url: urlOrLink,
         note: note,
       });
-      // After adding the new todo, fetch all todos for the current user and update the state with the new data.
-      // fetchTodos(authUser.uid);
 
-      // Clear the todo input field.
-      // setTodoInput('');
-      // Clear the input fields
       setSelectedCategory('');
       setSelectedSubcategory('');
       setUrlOrLink('');
       setNote('');
-      // Close the modal
-      // closeModal();
 
-      console.log('Document written with ID: ', docRef.id);
-      alert('Document written with ID: ', docRef.id);
+      const cachedUserData = JSON.parse(localStorage.getItem('userData'));
+      if (cachedUserData) {
+        const newData = [
+          ...cachedUserData,
+          {
+            id: docRef.id,
+            category: selectedCategory,
+            subcategory: selectedSubcategory,
+            url: urlOrLink,
+            note: note,
+          },
+        ];
+        localStorage.setItem('userData', JSON.stringify(newData));
+        // Call the updateUserData function from props to update the userData state in Dashboard
+        updateUserData(newData);
+      }
+
+      alert('Document written with ID: ' + docRef.id);
+      closeModal();
     } catch (error) {
-      console.error('Error adding document: ', error);
-      alert('Error adding document: ', error);
+      console.log(error);
+      alert('Error adding document: ' + error);
     }
   };
   return (
@@ -387,7 +393,7 @@ const AddHoarding = () => {
           <textarea
             id="note"
             rows="4"
-            class="w-full px-2 py-2 border shadow-sm border-l-1 ring-inset rounded-lg bg-gray-50 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5  max-h-44"
+            className="w-full px-2 py-2 border shadow-sm border-l-1 ring-inset rounded-lg bg-gray-50 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5  max-h-44"
             placeholder="Add note... (totally optional though)"
             value={note}
             onChange={(e) => setNote(e.target.value)}
