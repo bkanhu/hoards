@@ -4,28 +4,29 @@ import { useAuth } from '@/context/AuthContext';
 const categoriesData = [
   {
     id: 1,
-    name: 'News and Current Events',
+    name: 'Read Later Articles',
     subcategories: [
       'Breaking news',
       'Politics',
-      'Technology',
-      'Science',
       'World events',
+      'Business and Finance',
+      'Entertainment',
+      'News and Current Events',
     ],
   },
   {
     id: 2,
     name: 'Entertainment',
-    subcategories: ['Movies', 'TV shows', 'Music', 'Books', 'Celebrities'],
+    subcategories: ['Movies', 'TV shows', 'Music', 'Celebrities', 'Comedy'],
   },
   {
     id: 3,
     name: 'Lifestyle',
     subcategories: [
       'Fashion',
-      'Food and cooking',
       'Health and wellness',
       'Travel',
+      'Food and cooking',
       'Home and decor',
     ],
   },
@@ -42,7 +43,7 @@ const categoriesData = [
   },
   {
     id: 5,
-    name: 'Education',
+    name: 'Education and Self-Improvement',
     subcategories: [
       'Online courses',
       'Educational resources',
@@ -52,99 +53,28 @@ const categoriesData = [
   },
   {
     id: 6,
-    name: 'Technology',
+    name: 'Science, Technology & Programming',
     subcategories: [
       'Gadgets and electronics',
       'Software and apps',
       'Tech news',
+      'Science',
+      'Environment',
       'Programming and development',
     ],
   },
   {
     id: 7,
     name: 'Business and Finance',
-    subcategories: [
-      'Entrepreneurship',
-      'Investing',
-      'Personal finance',
-      'Business news',
-    ],
+    subcategories: ['Entrepreneurship', 'Investing', 'Personal finance'],
   },
   {
     id: 8,
-    name: 'Science and Nature',
-    subcategories: ['Astronomy', 'Biology', 'Environment', 'Psychology'],
-  },
-  {
-    id: 9,
-    name: 'Social Media and Trends',
-    subcategories: [
-      'Memes',
-      'Viral content',
-      'Social media tips',
-      'Internet culture',
-    ],
-  },
-  {
-    id: 10,
     name: 'Inspiration and Motivation',
     subcategories: ['Quotes', 'Success stories', 'Motivational content'],
   },
   {
-    id: 11,
-    name: 'Parenting and Family',
-    subcategories: [
-      'Parenting tips',
-      'Family activities',
-      'Childcare resources',
-    ],
-  },
-  {
-    id: 12,
-    name: 'Personal Development',
-    subcategories: [
-      'Mindfulness',
-      'Productivity',
-      'Goal setting',
-      'Life hacks',
-    ],
-  },
-  {
-    id: 13,
-    name: 'Humor and Comedy',
-    subcategories: ['Funny videos', 'Jokes', 'Comedy sketches'],
-  },
-  {
-    id: 14,
-    name: 'History and Culture',
-    subcategories: ['Historical facts', 'Cultural insights', 'Heritage'],
-  },
-  {
-    id: 15,
-    name: 'Environment and Sustainability',
-    subcategories: ['Eco-friendly tips', 'Sustainability news', 'Green living'],
-  },
-  {
-    id: 16,
-    name: 'Home Improvement',
-    subcategories: ['Renovation ideas', 'Home organization', 'Interior design'],
-  },
-  {
-    id: 17,
-    name: 'Sports and Fitness',
-    subcategories: ['Sports news', 'Workout routines', 'Fitness tips'],
-  },
-  {
-    id: 18,
-    name: 'Tech and Gadgets',
-    subcategories: [
-      'Latest technology trends',
-      'Reviews of gadgets',
-      'Tech how-to guides',
-    ],
-  },
-  {
-    id: 19,
+    id: 9,
     name: 'Travel and Adventure',
     subcategories: [
       'Travel destinations',
@@ -153,98 +83,9 @@ const categoriesData = [
     ],
   },
   {
-    id: 20,
-    name: 'Art and Design',
-    subcategories: ['Art news', 'Design inspiration', 'Art history'],
-  },
-  {
-    id: 21,
-    name: 'Food and Cooking',
-    subcategories: ['Recipes', 'Cooking tips', 'Food news'],
-  },
-  {
-    id: 22,
-    name: 'Photography',
-    subcategories: ['Photography tips', 'Photography news', 'Photo editing'],
-  },
-  {
-    id: 23,
-    name: 'Music',
-    subcategories: ['Music news', 'Music reviews', 'Music history'],
-  },
-  {
-    id: 24,
-    name: 'Books and Literature',
-    subcategories: ['Book reviews', 'Book recommendations', 'Literature news'],
-  },
-  {
-    id: 25,
-    name: 'Celebrities and Pop Culture',
-    subcategories: ['Celebrity news', 'Celebrity gossip', 'Pop culture news'],
-  },
-  {
-    id: 26,
-    name: 'Fashion and Style',
-    subcategories: ['Fashion news', 'Fashion trends', 'Style tips'],
-  },
-  {
-    id: 27,
-    name: 'Beauty and Skincare',
-    subcategories: ['Beauty tips', 'Skincare tips', 'Beauty product reviews'],
-  },
-  {
-    id: 28,
-    name: 'Health and Wellness',
-    subcategories: [
-      'Health news',
-      'Wellness tips',
-      'Mental health tips',
-      'Fitness tips',
-    ],
-  },
-  {
-    id: 29,
-    name: 'Politics',
-    subcategories: [
-      'Political news',
-      'Political commentary',
-      'Political humor',
-    ],
-  },
-  {
-    id: 30,
-    name: 'Science',
-    subcategories: ['Science news', 'Science facts', 'Science history'],
-  },
-  {
-    id: 31,
-    name: 'World Events',
-    subcategories: ['World news', 'World history', 'World culture'],
-  },
-  {
-    id: 32,
-    name: 'Movies',
-    subcategories: ['Movie reviews', 'Movie news', 'Movie history'],
-  },
-  {
-    id: 33,
-    name: 'TV Shows',
-    subcategories: ['TV show reviews', 'TV show news', 'TV show history'],
-  },
-  {
-    id: 34,
-    name: 'Gaming',
-    subcategories: ['Game reviews', 'Game news', 'Game history'],
-  },
-  {
-    id: 35,
-    name: 'DIY and Crafts',
-    subcategories: ['DIY projects', 'Craft ideas', 'Craft tutorials'],
-  },
-  {
-    id: 36,
-    name: 'Other',
-    subcategories: ['Others'],
+    id: 10,
+    name: 'Miscellaneous ',
+    subcategories: ['Others', 'Watch Later', 'Uncategorized'],
   },
 ];
 
