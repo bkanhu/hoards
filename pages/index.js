@@ -16,6 +16,9 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <Link href="/dashboard">Dashboard</Link>
+        <p className="px-4 py-2 text-yellow-800 bg-yellow-100 rounded-md">
+          Currently in Development
+        </p>
         <Link href="/signup">Signup</Link>
 
         <div className={styles.description}>

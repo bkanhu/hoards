@@ -107,6 +107,7 @@ const AddHoarding = ({ closeModal, updateUserData }) => {
   const [selectedSubcategory, setSelectedSubcategory] = useState('');
   const [urlOrLink, setUrlOrLink] = useState('');
   const [note, setNote] = useState('');
+  const [title, setTitle] = useState('');
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -117,12 +118,14 @@ const AddHoarding = ({ closeModal, updateUserData }) => {
         subcategory: selectedSubcategory,
         url: urlOrLink,
         note: note,
+        title: title,
       });
 
       setSelectedCategory('');
       setSelectedSubcategory('');
       setUrlOrLink('');
       setNote('');
+      setTitle('');
 
       const cachedUserData = JSON.parse(localStorage.getItem('userData'));
       if (cachedUserData) {
@@ -134,6 +137,7 @@ const AddHoarding = ({ closeModal, updateUserData }) => {
             subcategory: selectedSubcategory,
             url: urlOrLink,
             note: note,
+            title: title,
           },
         ];
         localStorage.setItem('userData', JSON.stringify(newData));
@@ -155,6 +159,47 @@ const AddHoarding = ({ closeModal, updateUserData }) => {
         className="flex flex-col gap-4"
         onSubmit={handleFormSubmit}
       >
+        <div>
+          <label
+            htmlFor="title"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Title
+          </label>
+
+          <div className="flex mt-2">
+            <input
+              type="text"
+              id="title"
+              className="w-full px-2 py-2 border shadow-sm rounded-lg ring-inset  bg-gray-50 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5  "
+              placeholder="Enter Title here"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            htmlFor="url"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Link
+          </label>
+
+          <div className="flex mt-2">
+            <span className="inline-flex items-center justify-center px-3 py-2 text-gray-600 border border-r-0 rounded-tl-lg rounded-bl-lg">
+              https://
+            </span>
+            <input
+              type="text"
+              id="url"
+              className="w-full px-2 py-2 border shadow-sm border-l-1 ring-inset rounded-tr-lg rounded-br-lg bg-gray-50 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5  "
+              placeholder="hello"
+              value={urlOrLink}
+              onChange={(e) => setUrlOrLink(e.target.value)}
+            />
+          </div>
+        </div>
         <div>
           <label
             htmlFor="category"
@@ -201,28 +246,6 @@ const AddHoarding = ({ closeModal, updateUserData }) => {
               </select>
             </div>
           )}
-        </div>
-        <div>
-          <label
-            htmlFor="url"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Link
-          </label>
-
-          <div className="flex mt-2">
-            <span className="inline-flex items-center justify-center px-3 py-2 text-gray-600 border border-r-0 rounded-tl-lg rounded-bl-lg">
-              https://
-            </span>
-            <input
-              type="text"
-              id="url"
-              className="w-full px-2 py-2 border shadow-sm border-l-1 ring-inset rounded-tr-lg rounded-br-lg bg-gray-50 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5  "
-              placeholder="hello"
-              value={urlOrLink}
-              onChange={(e) => setUrlOrLink(e.target.value)}
-            />
-          </div>
         </div>
         <div>
           <label
